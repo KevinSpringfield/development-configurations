@@ -1,7 +1,6 @@
 # Mac environment settings
 ## Install Homebrew
 - Run the following cli:
-<br>
 ```
 $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
