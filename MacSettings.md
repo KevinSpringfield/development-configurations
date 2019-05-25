@@ -8,14 +8,12 @@ $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/inst
 ## Install iTerm2
 - There are several ways to install iTerm2, we try to install via Homebrew for a further management of the applications on our mac.
 - Install with homebrew cask:
-<br>
 ```
 $ brew cask install iterm2
 ```
 
 ## Install Oh-My-Zsh
 - Run:
-<br>
 ```
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
