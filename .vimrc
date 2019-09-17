@@ -36,17 +36,17 @@ call vundle#begin()
 " let Vundle manage Vundle
 " required!
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'mhartington/oceanic-next'
+" Plugin 'mhartington/oceanic-next'
 Plugin 'lifepillar/vim-solarized8'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 "colorscheme OceanicNext
 let g:solarized_use16 = 1
-colorscheme solarized8_dark
+colorscheme solarized8
 
 " To ignore plugin indent changes, instead use:
-"filetype plugin on
+" filetype plugin on
 " Brief help
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
