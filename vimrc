@@ -60,12 +60,15 @@ set ft=vue
 set list lcs=tab:\|\
 set list
 
+" set leader key and shortcut
+let mapleader = "\<space>"
+
 " enable fzf for vim
 set rtp+=~/.fzf
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 " set vim-airline theme
-"let g:airline_theme='tomorrow'
+let g:airline_theme='codedark'
 let g:airline#extensions#hunks#enabled=0
 let g:airline#extensions#branch#enabled=0
 let g:airline#extensions#tabline#fnamemod = ':t'
@@ -86,7 +89,7 @@ call vundle#begin()
 " required!
 Plugin 'VundleVim/Vundle.vim'
 
-" Themes
+" -----Themes-----
 " Plugin 'mhartington/oceanic-next'
 " Plugin 'lifepillar/vim-solarized8'
 Plugin 'rakr/vim-one'
@@ -94,24 +97,24 @@ Plugin 'morhetz/gruvbox'
 Plugin 'haishanh/night-owl.vim'
 Plugin 'ayu-theme/ayu-vim'
 Plugin 'arcticicestudio/nord-vim'
+Plugin 'tomasiser/vim-code-dark'
 
-" Git
+" -----Git-----
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 
-" Utils
+" -----Utils-----
 Plugin 'kevinw/pyflakes-vim'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'junegunn/fzf.vim'
 Plugin 'Yggdroot/indentLine'
-
-" IDE
+Plugin 'preservim/nerdtree'
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 Plugin 'mileszs/ack.vim'
 "Plugin 'davidhalter/jedi-vim'
-Plugin 'preservim/nerdtree'
+Plugin 'Yilin-Yang/vim-markbar'
 
 
 call vundle#end()            " required
@@ -129,10 +132,16 @@ filetype plugin indent on    " required
 "colorscheme night-owl
 
 " setup for gruvbox
-colorscheme gruvbox
+"colorscheme gruvbox
 let g:gruvbox_contrast_dark = 'hard'
 set background=dark
 let g:gruvbox_italic=1
+
+" setup for codedark
+let g:codedark_conservative = 0
+set t_Co=256
+colorscheme codedark
+set background=dark
 
 
 " setup vim one
@@ -153,6 +162,7 @@ let g:jedi#use_tabs_not_buffers = 1
 " setup for gitgurrer
 set signcolumn=yes
 "let g:gitgutter_enabled = 1
+"g:gitgutter_eager = 0
 
 " setup coc
 set cmdheight=2
@@ -178,11 +188,6 @@ nmap <leader>F  <Plug>(coc-format-selected)
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 
-" Applying codeAction to the selected region.
-" " Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
 " Shortcut for diagnostic
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 
@@ -198,9 +203,12 @@ omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
 
-"if exists('+termguicolors')
-"  set termguicolors
-"endif
+" -----True color-----
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
 
 "
 " To ignore plugin indent changes, instead use: " filetype plugin on
@@ -232,19 +240,17 @@ highlight ExtraWhitespace ctermbg=darkcyan guibg=yellow
 autocmd BufEnter * if &ft != 'help' | match ExtraWhitespace /\s\+$/ | endif
 autocmd BufEnter * if &ft == 'help' | match none /\s\+$/ | endif
 
-" set leader key and shortcut
-let mapleader = "\<space>"
 
 nmap <Leader>f :FZF<CR>
 nmap <Leader>i :IndentLinesToggle<CR>
 
-" map for tab control
+"map for tab control
 nnoremap <C-t> :tabnew<Space><CR>
 inoremap <C-t> <Esc>:tabnew<Space><CR>
 nnoremap <S-h> gT
 nnoremap <S-l> gt
 
-" map for autocomplete selection
+"map for autocomplete selection
 "inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<CR>"
 "inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Down>"
@@ -266,4 +272,5 @@ inoremap <silent><expr> <Tab>
     \ <SID>check_back_space() ? "\<Tab>" :
     \ coc#refresh()
 
-
+"map for markbar
+nmap <Leader>m <Plug>ToggleMarkbar
